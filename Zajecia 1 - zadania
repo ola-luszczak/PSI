@@ -1,0 +1,55 @@
+#zad 1
+kostka = function (n){
+  ciag_rzutow = sample(1:6,n,replace = TRUE)#replace=true - ze zwracaniem 
+  return(ciag_rzutow)
+}
+#zad 2
+wektor = function(n){
+  v = seq(1:n)
+  return(v)
+}
+
+#zad 3
+pole_kola = function(r){
+  if (r<0) return("promien nie moze byc ujemny!")
+  else if (r>=0) return(pi*r^2)
+}
+
+#zad 4
+przeciwprastokatna = function(a,b){ #a,b - długości przyprostokątnych
+  if (a<0 || b<0){return("dlugosc nie moze byc ujemna!")}
+  c = sqrt(a^2+b^2)
+  return (c)
+}
+
+#zad 5
+kalkulator = function(a,dzialanie,b){
+  if(dzialanie=="+"){return(a+b)}
+  else if(dzialanie=="-"){return(a-b)}
+  else if(dzialanie=="*"){return(a*b)}
+  else if(dzialanie=="/"){
+    if(b==0) return("nie wolno dzielic przez 0!!")
+    else return(a/b)
+  }
+  else return("niedostepne dzialanie - uzyj "+","-","*" lub "/"")
+}
+
+#zad 6
+przyznaj_nagrode = function (){
+  ile_oczek = sample(1:6,1)
+  print(ile_oczek)
+  if(ile_oczek==6)return("Super bonus!")
+  else if(ile_oczek==4 ||ile_oczek==5) return("Nagroda standardowa")
+  else return("Brak nagrody...")  
+}
+
+
+#zad 7
+podatek_od_dochodu = function(n,jak){
+  if(jak=="liniowo") return(n*0.19)
+  else if (jak=="na zasadach ogolnych"){
+    if(n<85528) return(max(n*0.18-556,0))
+    else if(n>=85528) return(14839+(n-85528)*0.32)
+  }
+}
+
