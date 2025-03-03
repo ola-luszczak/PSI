@@ -93,3 +93,73 @@ frequent_terms <- freq_terms(text2, stopwords = Top200Words)
 plot(frequent_terms)
 
 
+
+#zadanie 3. Rozsypanka
+
+library(qdap)
+# Wczytaj dane tekstowe
+# Wczytaj plik tekstowy z lokalnego dysku
+
+text <- readLines(file.choose())#wybieram recznie
+text
+frequent_terms <- freq_terms(text)
+frequent_terms
+frequent_terms <- freq_terms(text, stopwords = Top200Words)
+plot(frequent_terms)
+
+# Tworzenie chmury słów za pomocą pakietu wordcloud
+install.packages("wordcloud")
+library(wordcloud)
+
+# Utwórz chmurę słów
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ)
+
+# Opcje chmury słów
+?wordcloud
+# Zmiana wartości min.freq i max.words w celu wyświetlenia mniejszej/większej liczby słów.
+# min.freq: słowa o częstości poniżej tej wartości nie będą wyświetlane
+# max.words: maksymalna liczba słów do wyświetlenia
+
+# Ograniczenie liczby słów w chmurze poprzez określenie minimalnej częstości
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4)
+
+# Ograniczenie liczby słów w chmurze poprzez określenie maksymalnej liczby słów
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, max.words = 5)
+# Dodanie różnych palet kolorystycznych
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(9,"Blues"))
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(9,"Reds"))
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(9,"Greens"))
+
+# Optymalizacja i dostosowanie wyników
+# Dodanie koloru do chmury słów dla lepszej wizualizacji
+# Dodanie koloru
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, min.freq = 4, colors = brewer.pal(8,"Dark2"))
+# Dodanie koloru
+wordcloud(frequent_terms$WORD, frequent_terms$FREQ, max.words = 5, colors = brewer.pal(8,"Accent"))
+?brewer.pal
+brewer.pal.info
+
+
+
+PORÓWNANIE PRZEMÓWIEŃ
+
+1. wczytanie tekstów 
+text_2021 <- readLines(file.choose()) #import. tekstu z 2021
+text_2024 <- readLines(file.choose()) #import. tekstu z 2024
+2. analiza czestotliwości słów, usunięcie stop słów
+frequent_terms_2021 <- freq_terms(text_2021)
+frequent_terms_2024 <- freq_terms(text_2024)
+
+frequent_terms_2021 <- freq_terms(text_2021, stopwords = Top200Words) 
+frequent_terms_2024 <- freq_terms(text_2024, stopwords = Top200Words)
+3. wizualizacja danych
+- wykresy
+plot(frequent_terms_2021)
+plot(frequent_terms_2024)
+- chmury słów 
+wordcloud(frequent_terms_2021$WORD, frequent_terms_2021$FREQ)
+wordcloud(frequent_terms_2024$WORD, frequent_terms_2024$FREQ)
+
+- potem można te chmury dowolnie ograniczać i kolorować, ale ogólny wniosek jest taki, że: 
+w 2021 przemówienie bardziej skupiało się na działaniach rządu, ogólnie na planach politycznych (plan, democracy, care, nation)
+w 2024 przemówienie miało bardziej osobisty charakter, było bardziej emocjonalne i bezpośrednie (I'm, I've, tonight, history, future)
